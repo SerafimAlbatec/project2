@@ -11,6 +11,9 @@
    <% flash.each do |key, value| %>
      <%= content_tag(:div, value, :class => "flash #{key}") %>
    <% end %>
+
+   <!--   link_to "Home page", surveyor_gui.surveyor_gui_path.root_path%>  link gia na pigenw pisw--> 
+
    <%= yield %>
 
   </body>

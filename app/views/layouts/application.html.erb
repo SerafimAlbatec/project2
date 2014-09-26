@@ -21,7 +21,8 @@
 <% if user_signed_in? %>
   Logged in as <strong><%= current_user.email %></strong>.
   <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
-  <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>  | 
+  <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>  |
+  <%= link_to "Apantise se erwtiseis", surveyor_path %>  |
 <% else %>
   <%= link_to "Sign up for simple user", new_user_registration_path, :class => 'navbar-link'  %> |
   <%= link_to "Login for simple user", new_user_session_path, :class => 'navbar-link'  %>
@@ -32,6 +33,7 @@
   Logged in as <strong><%= current_admin.email %></strong>.
   <%= link_to 'Edit profile', edit_admin_registration_path, :class => 'navbar-link' %> |
   <%= link_to "Logout", destroy_admin_session_path, method: :delete, :class => 'navbar-link'  %>  | 
+  <%=link_to "MAKE A SURVEY", surveyor_gui.surveyforms_path %> -->
 <% else %>
   <%= link_to "Sign up for ADMIN", new_admin_registration_path, :class => 'navbar-link'  %> |
   <%= link_to "Login for ADMIIN", new_admin_session_path, :class => 'navbar-link'  %>
