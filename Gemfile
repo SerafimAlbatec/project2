@@ -38,8 +38,8 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-gem 'surveyor', github: 'NUBIC/surveyor'
-gem 'surveyor_gui'
-gem "therubyracer"
 gem 'devise'
+
+gem 'bootstrap-sass', '~> 3.2.0'
+gem 'autoprefixer-rails'
 

@@ -1,30 +1,22 @@
 Rails.application.routes.draw do
-  devise_for :admins
-  #get 'home/index'
+  resources :results
+
+  resources :answers
+
+  resources :questions
+
+  resources :polls
 
   devise_for :users
-  mount SurveyorGui::Engine => "/surveyor_gui", :as => "surveyor_gui"
-  mount Surveyor::Engine => "/surveys", :as => "surveyor"
+
+  devise_scope :user do
+    root to: "devise/registrations#new"
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-  root 'home#index'
-
-
-  #authenticated :user do
-  #  root :to => "surveyor"
-    # Rails 4 users must specify the 'as' option to give it a unique name
-    # root :to => "main#dashboard", :as => "authenticated_root"
-  #end
-
-  #authenticated :admin do
-   # root :to => "SurveyorGui::Engine"
-    # Rails 4 users must specify the 'as' option to give it a unique name
-    # root :to => "main#dashboard", :as => "authenticated_root"
-  #end
-  
 
   # You can have the root of your site routed with "root"
-  #root 'home#index'
+  # root 'welcome#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
