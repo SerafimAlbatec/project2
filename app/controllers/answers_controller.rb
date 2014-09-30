@@ -4,7 +4,11 @@ class AnswersController < ApplicationController
   # GET /answers
   # GET /answers.json
   def index
-    @answers = Answer.all
+    if params[:question_id]
+      @answers = Answer.where(:question_id => params[:question_id])
+    else
+      @answers = Answer.all 
+    end
   end
 
   # GET /answers/1
@@ -25,9 +29,11 @@ class AnswersController < ApplicationController
   # POST /answers.json
   def create
     @answer = Answer.new(answer_params)
-
+    @question = Question.find(params[:question_id])
+    @answer.question_id = @question.id
     respond_to do |format|
       if @answer.save
+        QuestionAswer.create(:question_id => params[:question_id], :answer_id => @answer.id)  #Lathos sto onoma tou modelou
         format.html { redirect_to @answer, notice: 'Answer was successfully created.' }
         format.json { render :show, status: :created, location: @answer }
       else
