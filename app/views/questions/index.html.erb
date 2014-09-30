@@ -14,7 +14,7 @@
   <tbody>
     <% @questions.each do |question| %> <!-- Bazw where etsi wste na emfanizw ayta me id poll -->
       <tr>
-        <td><%= question.name  %></td>
+        <td><%= link_to question.name, answers_path(:question_id => question.id)  %></td>
         <td><%= question.answer_number %></td>
         <td><%= question.user_id %></td>
         <td><%= question.poll_id %></td>
@@ -28,4 +28,4 @@
 
 <br>
 
-<%= link_to 'New Question', new_question_path %>
+<%= link_to 'New Question', new_question_path(:poll_id => params[:poll_id]) %>  <!-- Pernaw to poll_id mesa po to link-->

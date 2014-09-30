@@ -9,7 +9,12 @@ class QuestionsController < ApplicationController
 
 
   def index
-    @questions = Question.all #Emfanizw mono tis question tou poll
+    if params[:poll_id]
+      @questions = Question.where(:poll_id => params[:poll_id])
+      @poll = Poll.find(params[:poll_id])
+    else
+      @questions = Question.all
+    end
   end
 
   # GET /questions/1
@@ -31,8 +36,11 @@ class QuestionsController < ApplicationController
   def create
     @question = Question.new(question_params)
     @question.user_id = current_user.id
+    @poll = Poll.find(params[:poll_id]) #Pernw to param apo to submit button kai vriskw to poll
+    @question.poll_id = @poll.id #Pernw to id tou poll pou vrika apo panw
     respond_to do |format|
       if @question.save
+        PollQuestion.create(:poll_id => params[:poll_id], :question_id => @question.id)
         format.html { redirect_to @question, notice: 'Question was successfully created.' }
         format.json { render :show, status: :created, location: @question }
       else

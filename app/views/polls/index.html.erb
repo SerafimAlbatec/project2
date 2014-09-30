@@ -13,7 +13,7 @@
   <tbody>
     <% @polls.each do |poll| %>
       <tr>
-        <td><%= link_to poll.name, questions_path %></td>
+        <td><%= link_to poll.name, questions_path(:poll_id => poll.id) %></td> <!-- pernaw to poll.id sto question index -->
         <td><%= poll.question_number %></td>
         <td><%= link_to 'Show', poll %></td>
         <td><%= link_to 'Edit', edit_poll_path(poll) %></td>

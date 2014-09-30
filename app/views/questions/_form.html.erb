@@ -28,8 +28,8 @@
     <%= f.label :Dialekse_poll %><br>
     <%= f.collection_select(:poll_id, Poll.all, :id, :name) %>
   </div>
-  -->
+-->
   <div class="actions">
-    <%= f.submit %>
+    <%= f.button :sumbit, name: "poll_id", value: params[:poll_id] %> <!--Apo pollindex paei se questionindex kai meta questionnew-->
   </div>
 <% end %>

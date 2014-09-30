@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.5.38)
 # Database: survey
-# Generation Time: 2014-09-29 14:45:15 +0000
+# Generation Time: 2014-09-30 08:19:15 +0000
 # ************************************************************
 
 
@@ -50,6 +50,21 @@ CREATE TABLE `poll_questions` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+LOCK TABLES `poll_questions` WRITE;
+/*!40000 ALTER TABLE `poll_questions` DISABLE KEYS */;
+
+INSERT INTO `poll_questions` (`id`, `poll_id`, `question_id`, `created_at`, `updated_at`)
+VALUES
+	(11,6,28,'2014-09-30 07:43:30','2014-09-30 07:43:30'),
+	(15,7,32,'2014-09-30 07:57:54','2014-09-30 07:57:54'),
+	(16,8,33,'2014-09-30 07:59:20','2014-09-30 07:59:20'),
+	(17,7,34,'2014-09-30 08:00:02','2014-09-30 08:00:02'),
+	(18,7,35,'2014-09-30 08:03:29','2014-09-30 08:03:29'),
+	(19,7,36,'2014-09-30 08:04:00','2014-09-30 08:04:00'),
+	(20,7,37,'2014-09-30 08:04:34','2014-09-30 08:04:34');
+
+/*!40000 ALTER TABLE `poll_questions` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump of table polls
@@ -71,7 +86,8 @@ LOCK TABLES `polls` WRITE;
 
 INSERT INTO `polls` (`id`, `name`, `question_number`, `created_at`, `updated_at`)
 VALUES
-	(3,'Autokinita',NULL,'2014-09-29 14:15:58','2014-09-29 14:15:58');
+	(7,'Autokinita',NULL,'2014-09-30 07:47:36','2014-09-30 07:47:36'),
+	(8,'Spiti',NULL,'2014-09-30 07:59:11','2014-09-30 07:59:11');
 
 /*!40000 ALTER TABLE `polls` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -109,6 +125,15 @@ CREATE TABLE `questions` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+LOCK TABLES `questions` WRITE;
+/*!40000 ALTER TABLE `questions` DISABLE KEYS */;
+
+INSERT INTO `questions` (`id`, `name`, `answer_number`, `user_id`, `poll_id`, `created_at`, `updated_at`)
+VALUES
+	(37,'afcafcaa',NULL,6,7,'2014-09-30 08:04:34','2014-09-30 08:04:34');
+
+/*!40000 ALTER TABLE `questions` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump of table results
@@ -187,7 +212,7 @@ LOCK TABLES `users` WRITE;
 
 INSERT INTO `users` (`id`, `email`, `encrypted_password`, `reset_password_token`, `reset_password_sent_at`, `remember_created_at`, `sign_in_count`, `current_sign_in_at`, `last_sign_in_at`, `current_sign_in_ip`, `last_sign_in_ip`, `created_at`, `updated_at`, `admin`)
 VALUES
-	(6,'serafimntavranis@hotmail.com','$2a$10$mr3jCPExVRXeNIK0W0GdqecpgqVVQujN3wH7vrkMHGvqLHcxQ1drW',NULL,NULL,NULL,5,'2014-09-29 14:14:57','2014-09-29 09:22:45','127.0.0.1','127.0.0.1','2014-09-29 07:56:02','2014-09-29 14:14:57',1),
+	(6,'serafimntavranis@hotmail.com','$2a$10$mr3jCPExVRXeNIK0W0GdqecpgqVVQujN3wH7vrkMHGvqLHcxQ1drW',NULL,NULL,NULL,6,'2014-09-30 05:53:56','2014-09-29 14:14:57','127.0.0.1','127.0.0.1','2014-09-29 07:56:02','2014-09-30 05:53:56',1),
 	(7,'seras@hotmail.com','$2a$10$Nli1pVdHB4UTmQ4DX9YCLu0EBlF7vKPDudZxDDZccZdITRWEBLAqK',NULL,NULL,NULL,1,'2014-09-29 09:22:18','2014-09-29 09:22:18','127.0.0.1','127.0.0.1','2014-09-29 09:22:18','2014-09-29 09:22:18',0);
 
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
