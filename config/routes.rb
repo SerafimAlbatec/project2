@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'poll_questions/index'
+
   resources :results
 
   resources :answers

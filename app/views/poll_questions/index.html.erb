@@ -1,0 +1,16 @@
+<h1>PollQuestions#index</h1>
+<p>Find me in app/views/poll_questions/index.html.erb</p>
+
+<table>
+<% @question.each do |a| %>
+ <tr>
+ 	<td><%= a.name %></td>
+ 	<% @answers.each do |f| %>
+ 	<tr>
+ 	<td><%= f.name %></td>
+ </tr>
+ 	<% end %>
+ </tr>
+ <% end %>
+
+</table>
