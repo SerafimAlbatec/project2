@@ -1,4 +1,5 @@
 <%= form_for(@result) do |f| %>
+
   <% if @result.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@result.errors.count, "error") %> prohibited this result from being saved:</h2>
@@ -11,6 +12,7 @@
     </div>
   <% end %>
 
+<!--
   <div class="field">
     <%= f.label :user_id %><br>
     <%= f.number_field :user_id %>
@@ -19,14 +21,19 @@
     <%= f.label :poll_id %><br>
     <%= f.number_field :poll_id %>
   </div>
+-->
+<% @question.each do |a| %>
   <div class="field">
-    <%= f.label :question_id %><br>
+    <%= f.label a.name %><br>
     <%= f.number_field :question_id %>
   </div>
+  <% @answers.each do |c| %>
   <div class="field">
-    <%= f.label :answer_id %><br>
-    <%= f.number_field :answer_id %>
+    <%= radio_button_tag(:answer_id, c.name) %>
+    <%= f.label c.name %><br>
   </div>
+  <%  end %>
+  <% end %>
   <div class="actions">
     <%= f.submit %>
   </div>
