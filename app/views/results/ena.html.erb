@@ -6,11 +6,19 @@
     <%= label_tag a.id %><br>
     <!-- < number_field_tag :question_id %> --> <!-- Prepei na to pernaw kateuthian -->
   </div>
-  <% @answers = Answer.where(:question_id => a.id)   %>
-  <% @answers.each do |c| %>
+  <% @answers = Answer.where(:question_id => a.id)   %> <!-- Xreiazete mono gia ton katw kodikasss -->
+  <%= collection_select(a, :answer_id, Answer.where(:question_id => a.id), :id, :name) %> 
+  <% end %>
+
+
+  <!--
+Kalo to epanw alla thelw me radio_button
+
+<% @answers.each do |c| %>
   <div class="field">
     <%= radio_button_tag(:answer_id, c.name) %>
     <%= label_tag c.name %><br>
   </div>
   <%  end %>
-  <% end %>
+
+  -->
