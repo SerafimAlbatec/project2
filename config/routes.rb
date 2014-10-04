@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  get 'poll_questions/index'
+  get 'poll_questions/index'  #Etsi pernaw auta pou den exv kanei scaffold!!!
+
+  get 'results/ena'
 
   resources :results
 

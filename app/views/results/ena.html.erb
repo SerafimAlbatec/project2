@@ -1,0 +1,16 @@
+<h1>TEST</h1>
+
+<% @question.each do |a| %>
+  <div class="field">
+    <%= label_tag a.name %><br>
+    <%= label_tag a.id %><br>
+    <!-- < number_field_tag :question_id %> --> <!-- Prepei na to pernaw kateuthian -->
+  </div>
+  <% @answers = Answer.where(:question_id => a.id)   %>
+  <% @answers.each do |c| %>
+  <div class="field">
+    <%= radio_button_tag(:answer_id, c.name) %>
+    <%= label_tag c.name %><br>
+  </div>
+  <%  end %>
+  <% end %>

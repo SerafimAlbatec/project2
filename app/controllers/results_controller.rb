@@ -29,6 +29,21 @@ class ResultsController < ApplicationController
     end
   end
 
+  def ena
+    if params[:poll_id]
+      #@result.poll_id = params[:poll_id]
+      @poll = Poll.where(:id => params[:poll_id]) #To prwto einai ston pinaka kai to params auto pou pernw.Ginete kai alliws des index controller poll
+      @a = PollQuestion.where(:poll_id => params[:poll_id]) #Exw parei polla antikeimena me to idio poll_id kai diaforetika question_id
+      @a.each do |a|  ####  MALLON den xreiazete autos o pinakas, tzampa ton ekana kai efaga tosi wra....
+      #@question = Question.where(:poll_id => params[:poll_id])  ### Giati ginetai kai etsi
+      @question = Question.where(:poll_id => a.poll_id) # Pernaw oles tis erwtiseis me poll_id pou thelw
+      end
+      @question.each do |a|
+        #@answers = Answer.where(:question_id => a.id) #Pernaw oles tis teleftaies apantiseis!! Ara den mas kanei!! 
+      end
+    end
+  end
+
   # GET /results/1/edit
   def edit
   end
