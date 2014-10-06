@@ -30,6 +30,7 @@ class ResultsController < ApplicationController
   end
 
   def ena
+    @result = Result.new
     if params[:poll_id]
       #@result.poll_id = params[:poll_id]
       @poll = Poll.where(:id => params[:poll_id]) #To prwto einai ston pinaka kai to params auto pou pernw.Ginete kai alliws des index controller poll
@@ -42,6 +43,7 @@ class ResultsController < ApplicationController
         #@answers = Answer.where(:question_id => a.id) #Pernaw oles tis teleftaies apantiseis!! Ara den mas kanei!! 
       end
     end
+    @hash = Hash.new
   end
 
   # GET /results/1/edit

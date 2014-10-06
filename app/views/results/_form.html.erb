@@ -22,18 +22,18 @@
     <%= f.number_field :poll_id %>
   </div>
 -->
+
 <% @question.each do |a| %>
   <div class="field">
-    <%= f.label a.name %><br>
-    <%= f.number_field :question_id %>
+    <%= label_tag a.name %><br>
+    <%= label_tag a.id %><br>
   </div>
-  <% @answers.each do |c| %>
-  <div class="field">
-    <%= radio_button_tag(:answer_id, c.name) %>
-    <%= f.label c.name %><br>
-  </div>
-  <%  end %>
+  <% @answers = Answer.where(:question_id => a.id)   %> 
+  <%= f.collection_select :answer_id, Answer.where(:question_id => a.id), :id, :name %> 
   <% end %>
+
+
+
   <div class="actions">
     <%= f.submit %>
   </div>

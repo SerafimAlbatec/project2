@@ -1,15 +1,18 @@
 <h1>TEST</h1>
 
+
 <% @question.each do |a| %>
   <div class="field">
     <%= label_tag a.name %><br>
     <%= label_tag a.id %><br>
-    <!-- < number_field_tag :question_id %> --> <!-- Prepei na to pernaw kateuthian -->
   </div>
-  <% @answers = Answer.where(:question_id => a.id)   %> <!-- Xreiazete mono gia ton katw kodikasss -->
+  <% @answers = Answer.where(:question_id => a.id)   %> 
   <%= collection_select(a, :answer_id, Answer.where(:question_id => a.id), :id, :name) %> 
   <% end %>
 
+
+<br />
+<%= link_to 'Submit Survey', polls_path %>
 
   <!--
 Kalo to epanw alla thelw me radio_button
@@ -19,6 +22,6 @@ Kalo to epanw alla thelw me radio_button
     <%= radio_button_tag(:answer_id, c.name) %>
     <%= label_tag c.name %><br>
   </div>
-  <%  end %>
+  <% end %>
 
   -->

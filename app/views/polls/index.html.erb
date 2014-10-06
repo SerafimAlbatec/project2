@@ -18,7 +18,7 @@
         <td><%= link_to 'Show', poll %></td>
         <td><%= link_to 'Edit', edit_poll_path(poll) %></td>
         <td><%= link_to 'Destroy', poll, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= link_to 'Take this survey', results_ena_path(:poll_id => poll.id)%></td>
+        <td><%= link_to 'Take this survey', new_result_path(:poll_id => poll.id)%></td>
         <!-- <td> link se view pou tha apantw se erwtiseis. Tha kanw nea view pou tha pernw dedomena kai tha ta apothikeuw </td> -->
       </tr>
     <% end %>
