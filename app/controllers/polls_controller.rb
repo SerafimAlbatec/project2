@@ -25,7 +25,7 @@ class PollsController < ApplicationController
   # POST /polls.json
   def create
     @poll = Poll.new(poll_params)
-
+    @poll.user_id = current_user.id
     respond_to do |format|
       if @poll.save
         format.html { redirect_to @poll, notice: 'Poll was successfully created.' }

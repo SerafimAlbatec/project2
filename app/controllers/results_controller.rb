@@ -27,6 +27,7 @@ class ResultsController < ApplicationController
         @answers = Answer.where(:question_id => a.id)
       end
     end
+    @hash = Hash.new
   end
 
   def ena
@@ -55,7 +56,7 @@ class ResultsController < ApplicationController
   def create
     @result = Result.new(result_params)
     @result.user_id = current_user.id   #dinw sto apotelesma ton user pou to ekane
-    @result.poll_id = params[:poll_id]
+    @result.poll_id = params[:poll_id] #Den stelnw pisw to poll_id opote den douleuei
     respond_to do |format|
       if @result.save
         format.html { redirect_to @result, notice: 'Result was successfully created.' }

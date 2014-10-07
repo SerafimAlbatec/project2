@@ -15,11 +15,10 @@
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
-  <div class="field">
-    <%= f.label :question_number %><br>
-    <%= f.number_field :question_number %>
-  </div>
+
   <div class="actions">
-    <%= f.submit %>
+    <%= button_tag(type: 'submit', class: "btn btn-primary") do %>
+    <i class="icon-ok icon-white"></i> Save
+    <% end %>
   </div>
 <% end %>

@@ -24,17 +24,18 @@
 -->
 
 <% @question.each do |a| %>
-  <div class="field">
+  <div class="field form-group input-lg">
     <%= label_tag a.name %><br>
     <%= label_tag a.id %><br>
   </div>
   <% @answers = Answer.where(:question_id => a.id)   %> 
-  <%= f.collection_select :answer_id, Answer.where(:question_id => a.id), :id, :name %> 
+  <%= f.collection_select :answer_id, Answer.where(:question_id => a.id), :id, :name, {}, {class: "form-control"} %> 
   <% end %>
 
+<hr>
 
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+ 
+  <%= button_tag(type: 'submit',name: "poll_id", value: params[:poll_id], class: "btn btn-primary") do %>
+  <i class="icon-ok icon-white"></i> Save
+  <% end %>
 <% end %>

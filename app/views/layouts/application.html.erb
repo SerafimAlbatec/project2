@@ -8,16 +8,23 @@
 </head>
 <body>
 
-<%= yield %>
+<div id="main-container" class="container">
+      <div class="row">
+        <div class="col-xs-9">
+          <%= yield %>
+          <% if user_signed_in? %>
+          <br />
+          <br />
+          Logged in as <strong><%= current_user.email %></strong>.
+          <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
+          <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>  | 
+          <%= link_to "Lista me polls", root_path %>
+          <% end %>
+        </div>
+        
+      </div>
+    </div>
 
-<% if user_signed_in? %>
-  <br />
-  <br />
-  Logged in as <strong><%= current_user.email %></strong>.
-  <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
-  <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>  | 
-  <%= link_to "Lista me polls", root_path %>
-<% end %>
 
 </body>
 </html>
