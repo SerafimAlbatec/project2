@@ -15,6 +15,7 @@
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
+  <!--
   <div class="field">
     <%= f.label :answer_number %><br>
     <%= f.number_field :answer_number %>
@@ -23,7 +24,7 @@
     <%= f.label :user_id %><br>
     <%= f.number_field :user_id %>
   </div>
-  <!--
+  
   <div class="field">
     <%= f.label :Dialekse_poll %><br>
     <%= f.collection_select(:poll_id, Poll.all, :id, :name) %>

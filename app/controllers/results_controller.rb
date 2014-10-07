@@ -56,7 +56,7 @@ class ResultsController < ApplicationController
   def create
     @result = Result.new(result_params)
     @result.user_id = current_user.id   #dinw sto apotelesma ton user pou to ekane
-    @result.poll_id = params[:poll_id] #Den stelnw pisw to poll_id opote den douleuei
+    @result.poll_id = params[:poll_id] #Den stelnw pisw to poll_id opote den douleuei , twra doueuei
     respond_to do |format|
       if @result.save
         format.html { redirect_to @result, notice: 'Result was successfully created.' }
@@ -100,6 +100,6 @@ class ResultsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def result_params
-      params.require(:result).permit(:user_id, :poll_id, :question_id, :answer_id)
+      params.require(:result).permit(:user_id, :poll_id, :question_id, {:answer_id => []})
     end
 end

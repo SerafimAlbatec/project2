@@ -34,6 +34,7 @@ class AnswersController < ApplicationController
     respond_to do |format|
       if @answer.save
         QuestionAswer.create(:question_id => params[:question_id], :answer_id => @answer.id)  #Lathos sto onoma tou modelou
+        flash[:success] = 'Anser was successfully created.'
         format.html { redirect_to @answer, notice: 'Answer was successfully created.' }
         format.json { render :show, status: :created, location: @answer }
       else

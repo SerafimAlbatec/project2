@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)  #Kateutheian stin selida pou tou leme
-  	if current_user.try(:admin?)
+  	if current_user.admin?
       polls_path
     else
       polls_path

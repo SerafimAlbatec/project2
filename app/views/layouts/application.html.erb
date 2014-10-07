@@ -9,6 +9,17 @@
 <body>
 
 <div id="main-container" class="container">
+
+  <%= render 'shared/navigation' %>
+
+  <div class="row">
+        <div class="col-xs-12">
+          <% flash.each do |name, msg| -%>
+            <%= content_tag :div, msg, class: "alert alert-#{name}" %>
+          <% end %>
+        </div>
+      </div>
+
       <div class="row">
         <div class="col-xs-9">
           <%= yield %>
@@ -18,7 +29,7 @@
           Logged in as <strong><%= current_user.email %></strong>.
           <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
           <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>  | 
-          <%= link_to "Lista me polls", root_path %>
+          <%= link_to "Lista me polls", polls_path %>
           <% end %>
         </div>
         

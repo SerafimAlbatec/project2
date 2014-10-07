@@ -1,3 +1,8 @@
+<ul class="nav nav-tabs" role="tablist">
+  <li class="active"><%= link_to 'View list', polls_path %></li>
+  <li><%= link_to 'New todo', new_poll_path %></li>
+</ul>
+
 <h1>Listing polls</h1>
 
 <% if current_user.try(:admin?) %>
@@ -59,7 +64,7 @@
 <% if current_user.try(:admin?) %>
 
 <%= link_to new_poll_path, class: 'btn btn-success' do  %>
-<i class="glyphicon glyphicon-plus"></i> New Todo
+<i class="glyphicon glyphicon-plus"></i> New Poll
 <% end %>
 
 <% end %>
