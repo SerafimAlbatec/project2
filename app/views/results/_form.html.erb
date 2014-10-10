@@ -27,9 +27,13 @@
   <div class="field form-group input-lg">
     <%= label_tag a.name %><br>
     <%= label_tag a.id %><br>
+    <%= f.fields_for :windows do |q| %>
+    <%= q.hidden_field :question_id, :value => a.id %>
+    
   </div>
   <% @answers = Answer.where(:question_id => a.id)   %> 
-  <%= f.collection_select :answer_id, Answer.where(:question_id => a.id), :id, :name, {}, {class: "form-control"} %> 
+  <%= q.collection_select :answer_id, Answer.where(:question_id => a.id), :id, :name, {}, {class: "form-control"} %> 
+  <% end %>
   <% end %>
 
 <hr>

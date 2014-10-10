@@ -24,8 +24,15 @@ class ResultsController < ApplicationController
       @question = Question.where(:poll_id => a.poll_id)
       end
       @question.each do |a|
-        @answers = Answer.where(:question_id => a.id)
+        #@answers = Answer.where(:question_id => a.id)
       end
+      a = @question.count
+      if (a != 1)
+        a = (a/2)
+      end
+      a.times do
+      windows = @result.windows.build
+    end
     end
     @hash = Hash.new
   end
@@ -50,6 +57,7 @@ class ResultsController < ApplicationController
   # GET /results/1/edit
   def edit
   end
+
 
   # POST /results
   # POST /results.json
@@ -100,6 +108,6 @@ class ResultsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def result_params
-      params.require(:result).permit(:user_id, :poll_id, :question_id, {:answer_id => []})
+      params.require(:result).permit(:user_id, :poll_id, :question_id, :answer_id => [], :windows_attributes => [:id, :result_id, :question_id, :answer_id])
     end
 end

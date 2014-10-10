@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   get 'results/ena'
 
-  resources :results
+  resources :results 
 
   resources :answers
 
