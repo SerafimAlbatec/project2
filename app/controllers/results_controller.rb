@@ -1,10 +1,52 @@
 class ResultsController < ApplicationController
   before_action :set_result, only: [:show, :edit, :update, :destroy]
+  before_action :check_auth, only: [:new]
+  before_action :check_index, only: [:index]
+
+  def check_auth
+    # Elegxw an to survey einai tou admin pou to eftiakse
+    @poll = Poll.where(:id => params[:poll_id]).first
+    if (current_user.id == @poll.user_id)
+      flash[:success] = 'Sorry you cant take this survey, it is yours'
+      redirect_to(polls_path)
+    end
+    ####################################################################################################
+
+    @result = Result.where(:poll_id => params[:poll_id])
+    a = 0
+    @result.each do |c| #Elegxw an exei dei ta apotelesmata
+      if (c.question_id == current_user.id)
+        a = a + 1
+      end
+    end
+    if (a > 0) #An ta exei dei
+      flash[:danger] = 'Sorry you cant take this survey, you saw the results'
+      redirect_to(polls_path)
+    end
+  end
+
+  def check_index
+    @result = Result.where(:poll_id => params[:poll_id])
+    i = 0
+    @result.each do |a|
+      if (current_user.id == a.user_id) #Elegxw an o xristeis exei apantisei se survey kai prostheto ston counter
+        i = i + 1
+      end
+    end
+    # An o counter einai 0, o xristis den exei apantisei kai vlepei ta apotelesmata ara meta den mporei na apantisei. Ara paw sto check_auth kai elegxw
+    if (i == 0) #An dei ta apotelesmata xwris na exei patisei take survey
+      @result.each do |c|
+        c.question_id = current_user.id #Ston pinaka vazw oti ta eida sto question_id gia na min kanw kai alles stiles!!
+        c.save
+      end
+    end
+  end
+
 
   # GET /results
   # GET /results.json
   def index
-    @results = Result.all
+    @results = Result.where(:poll_id => params[:poll_id])
   end
 
   # GET /results/1
@@ -108,6 +150,6 @@ class ResultsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def result_params
-      params.require(:result).permit(:user_id, :poll_id, :question_id, :answer_id => [], :windows_attributes => [:id, :result_id, :question_id, :answer_id])
+      params.require(:result).permit(:user_id, :poll_id, :question_id, :answer_id => [], :windows_attributes => [:id, :result_id, :question_id, :answer_id, :question_name, :answer_name])
     end
 end

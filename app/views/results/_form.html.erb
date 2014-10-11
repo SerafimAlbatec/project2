@@ -28,11 +28,11 @@
     <%= label_tag a.name %><br>
     <%= label_tag a.id %><br>
     <%= f.fields_for :windows do |q| %>
-    <%= q.hidden_field :question_id, :value => a.id %>
+    <%= q.hidden_field :question_name, :value => a.name %> <!--Mporw na pernaw oti thelw-->
     
   </div>
   <% @answers = Answer.where(:question_id => a.id)   %> 
-  <%= q.collection_select :answer_id, Answer.where(:question_id => a.id), :id, :name, {}, {class: "form-control"} %> 
+  <%= q.collection_select :answer_name, Answer.where(:question_id => a.id), :name, :name, {}, {class: "form-control"} %>  <!-- Prwto: ti pernaei ston pinaka ton kenourio, Deytero: ti pernaw apo ton pinaka mou, Trito: ti vlepw sto view -->
   <% end %>
   <% end %>
 

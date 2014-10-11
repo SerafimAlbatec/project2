@@ -1,5 +1,14 @@
 class PollsController < ApplicationController
   before_action :set_poll, only: [:show, :edit, :update, :destroy]
+  before_action :check_auth, only: [:edit, :update, :destroy]
+
+  def check_auth
+    if current_user.id != @poll.user_id
+      flash[:notice] = "Sorry you can't edit this poll"
+      redirect_to(polls_path)
+    end
+    
+  end
 
   # GET /polls
   # GET /polls.json

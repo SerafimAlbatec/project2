@@ -1,11 +1,13 @@
+<h1>Listing polls</h1>
+
+<% if current_user.try(:admin?) %>
+
 <ul class="nav nav-tabs" role="tablist">
   <li class="active"><%= link_to 'View list', polls_path %></li>
   <li><%= link_to 'New todo', new_poll_path %></li>
 </ul>
 
-<h1>Listing polls</h1>
 
-<% if current_user.try(:admin?) %>
 <table class="table table-hover" >
   <col width="2000">
   <col width="10">
@@ -28,6 +30,8 @@
         <td><%= link_to 'Edit', edit_poll_path(poll), class: 'btn btn-info btn-xs' %></td>
         <td><%= link_to 'Destroy', poll, method: :delete, data: { confirm: 'Are you sure?' } , class: 'btn btn-danger btn-xs'%></td>
         <td><%= link_to 'Take this survey', new_result_path(:poll_id => poll.id), class: 'btn btn-warning btn-xs'%></td>
+        <td><%= link_to 'Apotelesmata', results_path(:poll_id => poll.id), class: 'btn btn-warning btn-xs'%></td>
+
         <!-- <td> link se view pou tha apantw se erwtiseis. Tha kanw nea view pou tha pernw dedomena kai tha ta apothikeuw </td> -->
       </tr>
     <% end %>
@@ -37,11 +41,17 @@
 <br>
 <% else %>
 
-<table>
+<table class="table table-hover" >
+  <col width="2000">
+  <col width="10">
+  <col width="10">
+  <col width="10">
+  <col width="10">
   <thead>
-    <tr>
+    <tr class='info'>
       <th>Name</th>
-      <th colspan="3"></th>
+      <th></th>
+      <th colspan="6"></th>
     </tr>
   </thead>
 
@@ -50,8 +60,9 @@
       <tr>
         <td><%= poll.name %></td>
         <td><%= poll.question_number %></td>
-        <td><%= link_to 'Show', poll %></td>
-        <td><%= link_to 'Take this survey', results_ena_path(:poll_id => poll.id)%></td>
+        <td><%= link_to 'Show', poll, class: 'btn btn-primary btn-xs' %></td>
+        <td><%= link_to 'Take this survey', new_result_path(:poll_id => poll.id), class: 'btn btn-warning btn-xs' %></td>
+        <td><%= link_to 'Apotelesmata', results_path(:poll_id => poll.id), class: 'btn btn-warning btn-xs'%></td>
       </tr>
     <% end %>
   </tbody>

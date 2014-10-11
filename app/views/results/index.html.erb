@@ -1,6 +1,6 @@
 <h1>Listing results</h1>
 
-<table>
+<table class="table table-hover" >
   <thead>
     <tr>
       <th>User</th>
@@ -13,19 +13,19 @@
 
   <tbody>
     <% @results.each do |result| %>
+    <% @window = Window.where(:result_id => result.id) %>
+    <% @window.each do |a| %>
       <tr>
-        <td><%= result.user_id %></td>
-        <td><%= result.poll_id %></td>
-        <td><%= result.question_id %></td>
-        <td><%= result.answer_id %></td>
-        <td><%= link_to 'Show', result %></td>
-        <td><%= link_to 'Edit', edit_result_path(result) %></td>
-        <td><%= link_to 'Destroy', result, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= User.where(:id => result.user_id).first.email %></td>
+        <td><%= Poll.where(:id => result.poll_id).first.name %></td>
+        <td><%= a.question_name%></td>
+        <td><%= a.answer_name %></td>
       </tr>
+    <% end %>
     <% end %>
   </tbody>
 </table>
 
 <br>
 
-<%= link_to 'New Result', new_result_path %>
+
