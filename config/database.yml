@@ -13,12 +13,10 @@ default: &default
   adapter: mysql2
   encoding: utf8
   pool: 5
-  username: root
-  password: 'root'
-  socket: /var/run/mysqld/mysqld.sock
+  username: rails
+  password: 'kq0gzxqzvR'
   database: survey
-  host: 127.0.0.1
-  port: 8889
+  host: localhost
 
 development:
   <<: *default
